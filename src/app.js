@@ -9,7 +9,7 @@ server.use(express.json());
 const users= [];
 const tweets = [];
 
-server.post("/sing-up", (req, res) => {
+server.post("/sign-up", (req, res) => {
 const userData = req.body;
 users.push(userData);
 res.send("OK");
@@ -31,8 +31,7 @@ server.post("/tweets", (req, res) => {
 server.get("/tweets", (req, res) => {
 
   let lastTweets = [];
-  if(tweets.length <= 10 )
-    //mando como resposta
+
   res.send(lastTweets)
 })
 
