@@ -17,7 +17,7 @@ server.post("/sing-up", (req, res) => {
 const {username, avatar} = req.body
 const userData  = {username: username, avatar: avatar}
 users.push(userData)
-res.send("OK");
+res.status(201).send("OK");
 });
 
 
