@@ -2,22 +2,19 @@ import express from "express";
 import cors from "cors";
 
 const server = express(); //cria um servidor
-
-//biblioteca que vai liberar o acesso pra td mundo 
-server.use(cors())
-server.use(express.json())
+server.use(cors());
+server.use(express.json());
 
 const users= [];
-
 const tweets = [];
 
 
 server.post("/sing-up", (req, res) => {
 
-const { username, avatar } = req.body
-const userData  = {username: username, avatar: avatar}
+const userData = req.body;
 
-if(!username || !avatar){
+
+if(!userData.username || !userData.avatar){
   res.status(400).send("Todos os campos são obrigatórios!");
 }
 
