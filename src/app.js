@@ -21,18 +21,22 @@ server.post("/tweets", (req, res) => {
 
   if(users.find((n) => n.username === tweetData.username)){
     tweets.push(tweetData)
-    res.status(201).send("OK");
+    res.send("OK");
   }else{
-    res.status(401).send("UNAUTHORIZED");
+    res.send("UNAUTHORIZED");
   }
 });
 
 
 server.get("/tweets", (req, res) => {
 
-  let lastTweets = [];
-
-  res.send(lastTweets)
+  let lastTweets = [...tweets].reverse().slice(0, 10);
+  let sendTweet = lastTweets.map( t => {
+    const userAvatar = users.find(n => n.username === t.username);
+    return {username: t.username, tweet: t.tweet, avatar: userAvatar.avatar }
+  })
+  console.log(sendTweet)
+  res.send(sendTweet)
 })
 
 server.listen(5000, () => {
