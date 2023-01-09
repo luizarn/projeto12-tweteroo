@@ -14,9 +14,14 @@ const tweets = [];
 
 server.post("/sing-up", (req, res) => {
 
-const {username, avatar} = req.body
+const { username, avatar } = req.body
 const userData  = {username: username, avatar: avatar}
-users.push(userData)
+
+if(!username || !avatar){
+  res.status(400).send("Todos os campos são obrigatórios!");
+}
+
+users.push(userData);
 res.status(201).send("OK");
 });
 
